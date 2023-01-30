@@ -39,3 +39,9 @@ variable "deployer_role_name" {
   type        = string
   default     = "OrganizationAccountAccessRole"
 }
+
+variable "tags" {
+  description = "(Optional) A map of tags to add to IAM role resources"
+  type        = map(string)
+  default     = {}
+}

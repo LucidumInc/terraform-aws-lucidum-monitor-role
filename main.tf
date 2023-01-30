@@ -27,7 +27,7 @@ resource "aws_iam_role" "this" {
   name               = local.name
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 
-  tags = module.this.tags
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "this" {
@@ -109,7 +109,7 @@ resource "aws_iam_policy" "this" {
   name   = local.name
   policy = data.aws_iam_policy_document.this.json
 
-  tags = module.this.tags
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
