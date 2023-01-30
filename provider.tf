@@ -4,11 +4,6 @@ variable "assume_role" {
   description = "Whether to assume the deployer role to provision resources"
 }
 
-variable "region" {
-  type        = string
-  description = "The AWS region"
-}
-
 variable "account_id" {
   type        = string
   description = "The AWS Account ID of the target account"
@@ -46,8 +41,6 @@ locals {
 }
 
 provider "aws" {
-  region = var.region
-
   assume_role {
     role_arn = local.deployer_role_arn
   }
