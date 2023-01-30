@@ -1,3 +1,14 @@
+variable "assume_role" {
+  description = "(Optional) Whether to assume the deployer role to provision resources"
+  type        = bool
+  default     = true
+}
+
+variable "account_id" {
+  description = "(Required) The AWS Account ID of the target account"
+  type        = string
+}
+
 variable "prefix" {
   description = "(Optional) The prefix to attach to the role / policy."
   type        = string
@@ -20,5 +31,11 @@ variable "lucidum_account_arn" {
 variable "role_sts_externalid" {
   description = "(Optional) STS ExternalId condition value to use with the role."
   type        = string
-  default     = null
+  default     = "lucidum-access"
+}
+
+variable "deployer_role_name" {
+  description = "(Optional) IAM Role name for the deployer"
+  type        = string
+  default     = "OrganizationAccountAccessRole"
 }
