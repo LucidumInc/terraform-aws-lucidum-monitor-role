@@ -18,8 +18,7 @@ variable "prefix" {
 variable "role_name" {
   description = "(Optional) The role name."
   type        = string
-  default     = "LucidumMonitor" 
-  
+  default     = "lucidum_assume_role"
 }
 
 variable "lucidum_account_arn" {
