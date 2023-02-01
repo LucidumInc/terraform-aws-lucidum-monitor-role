@@ -3,7 +3,15 @@ locals {
   name   = "${local.prefix}${var.role_name}"
 }
 
-data "aws_iam_policy_document" "assume_role" {
+data "http" "this" {
+  url = "https://raw.githubusercontent.com/LucidumInc/lucidum-deployment-x-account/master/x_account_deployment/lucidum_assume_role_policy.json"
+
+  request_headers = {
+    Accept = "application/json"
+  }
+}
+
+data "aws_iam_policy_document" "this" {
   statement {
     principals {
       type        = "AWS"
@@ -24,85 +32,11 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "this" {
-  name               = local.name
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+  name                  = local.name
+  assume_role_policy    = tostring(data.http.this.response_body)
+  max_session_duration  = var.max_session_duration
 
   tags = var.tags
-}
-
-data "aws_iam_policy_document" "this" {
-  statement {
-    sid    = "AllowLucidumMonitoring"
-    effect = "Allow"
-    actions = [
-                "cloudtrail:Describe*",
-                "cloudtrail:Get*",
-                "cloudtrail:List*",
-                "cloudtrail:LookupEvents",
-                "cloudwatch:Describe*",
-                "cloudwatch:Get*",
-                "cloudwatch:List*",
-                "codecommit:List*",
-                "codecommit:Get*",
-                "config:Describe*",
-                "config:Get*",
-                "config:List*",
-                "dynamodb:Describe*",
-                "dynamodb:List*",
-                "dynamodb:Scan",
-                "ec2:Describe*",
-                "ec2:Get*",
-                "ecr:Batch*",
-                "ecr:Describe*",
-                "ecr:Get*",
-                "ecr:List*",
-                "ecs:Describe*",
-                "ecs:List*",
-                "eks:Describe*",
-                "eks:List*",
-                "elasticache:Describe*",
-                "elasticloadbalancing:Describe*",
-                "guardduty:Get*",
-                "guardduty:List*",
-                "iam:Get*",
-                "iam:List*",
-                "inspector:Describe*",
-                "inspector:Get*",
-                "inspector:List*",
-                "kms:Describe*",
-                "kms:Get*",
-                "kms:List*",
-                "lambda:Get*",
-                "lambda:List*",
-                "logs:PutLogEvents",
-                "logs:CreateLogStream",
-                "logs:CreateLogGroup",
-                "logs:Describe*",
-                "logs:FilterLogEvents",
-                "logs:Get*",
-                "logs:List*",
-                "organizations:Describe*",
-                "organizations:List*",
-                "pricing:Describe*",
-                "pricing:Get*",
-                "route53:List*",
-                "s3:Get*",
-                "s3:List*",
-                "securityhub:Describe*",
-                "securityhub:Get*",
-                "securityhub:List*",
-                "sns:List*",
-                "ssm:Describe*",
-                "ssm:Get*",
-                "sts:Get*",
-                "sts:AssumeRole",
-                "tag:Get*",
-                "workspaces:Describe*"
-    ]
-    resources = [
-      "*"
-    ]
-  }
 }
 
 resource "aws_iam_policy" "this" {

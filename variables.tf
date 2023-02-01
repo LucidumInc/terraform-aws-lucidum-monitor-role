@@ -18,8 +18,7 @@ variable "prefix" {
 variable "role_name" {
   description = "(Optional) The role name."
   type        = string
-  default     = "LucidumMonitor" 
-  
+  default     = "lucidum_assume_role"
 }
 
 variable "lucidum_account_arn" {
@@ -38,6 +37,12 @@ variable "deployer_role_name" {
   description = "(Optional) IAM Role name for the deployer"
   type        = string
   default     = "OrganizationAccountAccessRole"
+}
+
+variable "max_session_duration" {
+  description = "(Optional) Maximum session duration (in seconds) for the role"
+  type = number
+  default = 14400 
 }
 
 variable "tags" {
