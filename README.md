@@ -78,3 +78,18 @@ If you have AWS Organization set up, you can manage your member accounts from yo
 
 This terraform module helps to set up one AWS account. We also have a python program which helps to list all accounts in the OU and run terraform commands for them. It is available here.
 https://github.com/LucidumInc/python-aws-terraform-apply-to-accounts-in-ou
+
+## Parameters
+
+| name | description | default value |
+|------|:------------|:-------------:|
+| account_id  | (Required)  The AWS Account ID of the target account                  |      |
+| assume_role | (Optional) Whether to assume the deployer role to provision resources | `true` |
+| prefix  | (Optional) The prefix to attach to the role / policy.                 |  `null`  |
+| role_name  | (Optional) The role name.                 |  `lucidum_assume_role`  |
+| lucidum_account_arn  | (Optional) The arn of Lucidum's AWS account |`arn:aws:iam::365329389986:root`|
+| role_sts_externalid  | (Optional) STS ExternalId condition value to use with the role |  `null`  |
+| deployer_role_name  | (Optional) IAM Role name for the deployer|`OrganizationAccountAccessRole`|
+| tags  | (Optional) A map of tags to add to IAM role resources|`{}`|
+
+
