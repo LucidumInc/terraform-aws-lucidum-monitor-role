@@ -40,6 +40,12 @@ variable "deployer_role_name" {
   default     = "OrganizationAccountAccessRole"
 }
 
+variable "max_session_duration" {
+  description = "(Optional) Maximum session duration (in seconds) for the role"
+  type = number
+  default = 14400 
+}
+
 variable "tags" {
   description = "(Optional) A map of tags to add to IAM role resources"
   type        = map(string)
