@@ -4,7 +4,7 @@ Terraform module to create the Lucidum monitor role in AWS
 
 ## Usage
 
-**Note** the example below uses `ref=main`. It is recommended to pin this module to a specific tag version (i.e. `ref=1.0.0`) to avoid breaking changes. See the [releases page](https://github.com/LucidumInc/terraform-aws-lucidum-monitor-role/releases) for a list of published versions.
+**Note** the example below uses `ref=main`. It is recommended to pin this module to a specific tag version (i.e. `ref=v1.0.0`) to avoid breaking changes. See the [releases page](https://github.com/LucidumInc/terraform-aws-lucidum-monitor-role/releases) for a list of published versions.
 
 ```
 module "lucidum_monitor_role" {
