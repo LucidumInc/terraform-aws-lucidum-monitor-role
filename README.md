@@ -17,7 +17,7 @@ module "lucidum_monitor_role" {
 
 # this will output the Role ARN
 output "lucidum_monitor_role" {
-  value       = module.lucidum_monitor_role.role_arn
+  value       = module.lucidum_monitor_role.iam_role
 }
 ```
 
