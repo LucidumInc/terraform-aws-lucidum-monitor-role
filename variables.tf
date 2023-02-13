@@ -1,12 +1,17 @@
+variable "account_id" {
+  description = "(Required) The AWS Account ID of the target account"
+  type        = string
+}
+
+variable "role_sts_externalid" {
+  description = "(Required) STS ExternalId condition value to use with the role."
+  type        = string
+}
+
 variable "assume_role" {
   description = "(Optional) Whether to assume the deployer role to provision resources"
   type        = bool
   default     = true
-}
-
-variable "account_id" {
-  description = "(Required) The AWS Account ID of the target account"
-  type        = string
 }
 
 variable "prefix" {
@@ -25,12 +30,6 @@ variable "lucidum_account_arn" {
   description = "(Optional) The arn of Lucidum's AWS account."
   type        = string
   default     = "arn:aws:iam::365329389986:root"
-}
-
-variable "role_sts_externalid" {
-  description = "(Optional) STS ExternalId condition value to use with the role."
-  type        = string
-  default     = "lucidum-access"
 }
 
 variable "deployer_role_name" {
