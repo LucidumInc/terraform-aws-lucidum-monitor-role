@@ -33,7 +33,7 @@ The following steps demonstrate how to connect AWS in Lucidum when using this te
 2. Replace `main` in `ref=main` with the latest version from the [releases page](https://github.com/LucidumInc/terraform-aws-lucidum-monitor-role/releases)
 3. Set the `assume_role` to `false`
 4. Replace the `TARGET_AWS_ACCOUNT_ID` with your AWS account ID.
-5. Replace the `role_sts_externalid` with your external ID. **IMPORTANT** If you have multiple AWS accounts, the same external ID has to be used for all accounts. It is recommanded to generate a random unique string for the external ID. By default, it is `lucidum-access`
+5. Replace the `role_sts_externalid` with your external ID. **IMPORTANT** If you have multiple AWS accounts, the same external ID has to be used for all accounts. It is recommanded to generate a random unique string for the external ID.
 6. Login to your AWS account in terminal. Ex. `aws login` or `aws sso login`
 7. Run `terraform init` to download/update the module
 8. Run `terraform apply` and **IMPORTANT** review the plan output before typing `yes`
@@ -59,7 +59,7 @@ If you have AWS Organization set up, you can manage your member accounts from yo
 2. Replace `main` in `ref=main` with the latest version from the [releases page](https://github.com/LucidumInc/terraform-aws-lucidum-monitor-role/releases)
 3. Set the `assume_role` to `true`
 4. Replace the `TARGET_AWS_ACCOUNT_ID` with your AWS member account ID.
-5. Replace the `role_sts_externalid` with your external ID. **IMPORTANT** If you have multiple AWS accounts, the same external ID has to be used for all accounts. It is recommanded to generate a random unique string for the external ID. By default, it is `lucidum-access`
+5. Replace the `role_sts_externalid` with your external ID. **IMPORTANT** If you have multiple AWS accounts, the same external ID has to be used for all accounts. It is recommanded to generate a random unique string for the external ID.
 6. Login to your AWS management account in terminal. Ex. `aws sso login --profile root`
 7. Run `aws2-wrap --profile root terraform init` to download/update the module. The aws2-wrap (https://github.com/linaro-its/aws2-wrap) is used in this command. You can also use your favorite tool, like `aws-vault`
 8. Run `aws2-wrap --profile root terraform apply` and **IMPORTANT** review the plan output before typing `yes`
@@ -84,11 +84,11 @@ https://github.com/LucidumInc/python-aws-terraform-apply-to-accounts-in-ou
 | name | description | default value |
 |------|:------------|:-------------:|
 | account_id  | (Required)  The AWS Account ID of the target account                  |      |
+| role_sts_externalid  | (Required) STS ExternalId condition value to use with the role |   |
 | assume_role | (Optional) Whether to assume the deployer role to provision resources | `true` |
 | prefix  | (Optional) The prefix to attach to the role / policy                 |  `null`  |
 | role_name  | (Optional) The role name                 |  `lucidum_assume_role`  |
 | lucidum_account_arn  | (Optional) The arn of Lucidum's AWS account |`arn:aws:iam::365329389986:root`|
-| role_sts_externalid  | (Optional) STS ExternalId condition value to use with the role |  `null`  |
 | deployer_role_name   | (Optional) IAM Role name for the deployer|`OrganizationAccountAccessRole`|
 | max_session_duration | (Optional) Maximum session duration (in seconds) for the role. Minimum 4 hours | `14400` |
 | tags  | (Optional) A map of tags to add to IAM role resources|`{}`|
