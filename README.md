@@ -12,12 +12,12 @@ module "lucidum_monitor_role" {
   
   assume_role         = true
   account_id          = "TARGET_AWS_ACCOUNT_ID"
-  role_sts_externalid = "lucidum-access"
+  role_sts_externalid = "SAME_RANDOM_STRING_FOR_ALL_ACCOUNTS"
 }
 
 # this will output the Role ARN
 output "lucidum_monitor_role" {
-  value       = module.lucidum_monitor_role.iam_role
+  value               = module.lucidum_monitor_role.iam_role
 }
 ```
 
